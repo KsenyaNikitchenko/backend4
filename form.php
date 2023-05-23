@@ -22,7 +22,7 @@ if (!empty($messages)) {
         <h1>Сверхспособности</h1>
         <form action="index.php" method="POST">
             <label for="name" <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
-            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"'}?>>
+            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>>
                 Введите имя:<br>
                 <input name="name" placeholder="Введите имя" value='<?php isset($COOKIE['name_error'])? print trim($COOKIE['name_error']:print $values['name'];?>"><br>
             </label>

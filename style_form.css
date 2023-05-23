@@ -28,7 +28,7 @@ label .error{
     text-decoration-line: underline;
     font-size: larger;
 }
-label .ok{
+.ok{
     color: rgb(21, 206, 101);
     font-weight: 900;
     font-size:large;

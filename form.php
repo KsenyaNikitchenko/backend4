@@ -11,8 +11,8 @@
 <?php
 if (!empty($messages)) {
   print('<div id="messages">');
-  foreach ($messages as $message) {
-    print($message);
+  foreach ($messages as $m) {
+    print($m);
   }
   print('</div>');
 }

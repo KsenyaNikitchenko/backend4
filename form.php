@@ -31,11 +31,11 @@ if (!empty($messages)) {
             </label>
             <label for="year" <?php if (!empty($errors['year'])) {print 'class="error"';} ?>>Год рождения</label>
             <select name="year">
-                <!--<?php 
+                <?php 
     for ($i = 1922; $i <= 2022; $i++) {
       printf('<option value="%d">%d</option>', $i, $i);
     }
-    ?>-->
+    ?>
             </select>
             <br>
             <label for="gender" <?php if (!empty($errors['gender'])) {print 'class="error"';} ?>>Выберите пол:</label><br>

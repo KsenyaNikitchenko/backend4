@@ -20,39 +20,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
   $errors['limbs'] = !empty($_COOKIE['limbs']);
   $errors['superpowers'] = !empty($_COOKIE['superpowers']);
   $errors['biography'] = !empty($_COOKIE['biography']);
-  $errors['check-kontrol'] = !empty($_COOKIE['']);
   // Выдаем сообщения об ошибках.
   if ($errors['name']) {
     setcookie('name_error', '', 100000);// Удаляем куку, указывая время устаревания в прошлом.
-    $messages[] = '<div class="error">Заполните имя.</div>';// Выводим сообщение.
+    $messages['name'] = '<div class="error">Заполните имя.</div>';// Выводим сообщение.
   }
   if ($errors['email']) {
     setcookie('email_error', '', 100000);
-    $messages[] = '<div class="error">Введите e-mail<br></div>';
+    $messages['email'] = '<div class="error">Введите e-mail<br></div>';
   }
   if ($errors['year']) {
     setcookie('year_error', '', 100000);
-    $messages[] = '<div class="error">Выберите из списка год рождения<br></div>';
+    $messages['year'] = '<div class="error">Выберите из списка год рождения<br></div>';
   }
   if ($errors['gender']) {
     setcookie('gender_error', '', 100000);
-    $messages[] = '<div class="error">Укажите ваш пол<br></div>';
+    $messages['gender'] = '<div class="error">Укажите ваш пол<br></div>';
   }
   if ($errors['limbs']) {
     setcookie('limbs_error', '', 100000);
-    $messages[] = '<div class="error">Выберите количество конечностей<br></div>';
+    $messages['limbs'] = '<div class="error">Выберите количество конечностей<br></div>';
   }
   if ($errors['superpowers']) {
     setcookie('superpowers_error', '', 100000);
-    $messages[] = '<div class="error">Выберите минимум одну сверхспособность<br></div>';
+    $messages['superpowers'] = '<div class="error">Выберите минимум одну сверхспособность<br></div>';
   }
   if ($errors['biography']) {
     setcookie('biography_error', '', 100000);
-    $messages[] = '<div class="error">Расскажите о себе<br></div>';
-  }
-  if ($errors['check-kontrol']) {
-    setcookie('check-kontrol_error', '', 100000);
-    $messages[] = '<div class="error">Обязательно ознакомьтесь с контрактом перед отправкой формы</div>';
+    $messages['bigraphy'] = '<div class="error">Расскажите о себе<br></div>';
   }
   // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
@@ -71,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
     }
   }
   $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
-  $values['check-kontrol'] = empty($_COOKIE['check-kontrol_value']) ? '' : $_COOKIE['check-kontrol_value'];
   // Включаем содержимое файла form.php.
   // В нем будут доступны переменные $messages, $errors и $values для вывода 
   // сообщений, полей с ранее заполненными данными и признаками ошибок.

@@ -28,10 +28,10 @@ label .error{
     text-decoration-line: underline;
     font-size: larger;
 }
-.ok{
+label .ok{
     color: rgb(21, 206, 101);
-    font-weight: 400;
-    font-size:medium;
+    font-weight: 900;
+    font-size:large;
 }
 .submit{
     background-color: darkcyan;

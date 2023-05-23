@@ -26,7 +26,7 @@ if (!empty($messages)) {
             </label>
             <label for="email" <?php if (!empty($errors['email'])) {print 'class="error"';} ?>
             <?php if(empty($errors['email'])&&!empty($values['email'])){print 'class="ok"';}?>>Адрес электронной почты:<br>
-                <input name="email" type="email" placeholder="Введите email" value='<?php isset($COOKIE['email_error'])? ' ' : print $values['email'];?>'><br>
+                <input name="email" type="email" placeholder="Введите email" value='<?php if(!empty($values['email'])) print $values['email'];?>'><br>
             </label>
             <label for="year" <?php if (!empty($errors['year'])) {print 'class="error"';} ?>
             <?php if(empty($errors['year'])&&!empty($values['year'])){print 'class="ok"';}?>>Год рождения</label>
@@ -60,7 +60,7 @@ if (!empty($messages)) {
             <br>
             <label for="biography" <?php if (!empty($errors['biography'])) {print 'class="error"';} ?>>Биография:</label><br>
             <textarea name="biography" <?php if (!empty($errors['biography'])) {print 'class="error"';} ?>
-            <?php if(empty($errors['biography'])&&!empty($values['biography'])){print 'class="ok"';}?>><?php isset($COOKIE['biography_error'])? print trim($COOKIE['biography_error']) : print $values['biography'];?></textarea><br>
+            <?php if(empty($errors['biography'])&&!empty($values['biography'])){print 'class="ok"';}?>><?php if(!empty($values['name'])) print $values['biography'];?></textarea><br>
             <label><input type="checkbox" checked="checked" name="check-kontrol" <?php if (!empty($errors['check-kontrol'])) {print 'class="error"';} ?>>с контрактом ознакомлен(а)</label>
             <br>
             <input type="submit" class="submit" value="Отправить" />

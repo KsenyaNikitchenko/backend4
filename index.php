@@ -93,22 +93,26 @@ else{
   else{
     setcookie('email_value',$_POST['email'],time()+30*24*60*60);
   }
-  if($_POST['year']!=''){
-    setcookie('year_value','',time()+30*24*60*60);
+  if($_POST['year']==''){
+    setcookie('year_error','',time()+24*60*60);
+    $errors=TRUE;
+  }
+  else{
+    setcookie('year_value',$_POST['year'],time()+30*24*60*60);
   }
   if(empty($_POST['gender'])){
     setcookie('gender_error','',time()+24*60*60);
     $errors=TRUE;
   }
   else{
-    setcookie('gender_value','',time()+30*24*60*60);
+    setcookie('gender_value',$_POST['gender'],time()+30*24*60*60);
   }
   if(empty($_POST['limbs'])){
     setcookie('limbs_error','',time()+24*60*60);
     $errors=TRUE;
   }
   else{
-    setcookie('limbs_value','',time()+30*24*60*60);
+    setcookie('limbs_value',$_POST['limbs'],time()+30*24*60*60);
   }
   if(empty($_POST['biography'])){
     setcookie('biography_error','',time()+24*60*60);

@@ -93,7 +93,7 @@ else{
   else{
     setcookie('email_value',$_POST['email'],time()+30*24*60*60);
   }
-  if($_POST('year'='')){
+  if($_POST('year'=='')){
     setcookie('year_error','',time()+24*60*60)
     $errors=TRUE;
   }
@@ -134,48 +134,6 @@ else{
     setcookie('name_error','',100);
   }
 }
-// Проверяем ошибки.
-/*$errors = FALSE;
-if (empty($_POST['name'])) {
-    print('Введите имя. Поле может быть заполнено символами только русского
-     или только английского алфавитов.');
-    $errors = TRUE;
-}
-if (empty($_POST['email']) or !(strpos($_POST['email'], '@'))) {
-    print('Введите e-mail. Поле может быть заполнено только символами
-     английского алфавита, цифрами и знаком @');
-    $errors = TRUE;
-}
-if (empty($_POST['year'])) {
-    print('Выберите из списка год рождения<br>');
-    $errors = TRUE;
-}
-if (empty($_POST['gender'])) {
-    print('Укажите ваш пол<br>');
-    $errors = TRUE;
-}
-if (empty($_POST['limbs'])){
-    print ('Выберите количество конечностей<br>');
-    $errors = true;
-}
-if (empty($_POST['superpowers'])){
-    print ('Выберите минимум одну сверхспособность<br>');
-    $errors = true;
-}
-else {
-    $super = serialize($_POST['superpowers']);
-}
-if (empty($_POST['biography'])){
-    print ('Расскажите о себе<br>');
-    $errors = true;
-}
-if (empty($_POST['check-kontrol'])){
-    print ('Обязательно ознакомьтесь с контрактом перед отправкой формы<br>');
-    $errors = true;
-}
-if ($errors) {// При наличии ошибок завершаем работу скрипта.
-    exit();
-}*/
 // Сохранение в базу данных.
 $user = 'u52984';
 $pass = '8295850';

@@ -11,7 +11,6 @@
 <?php
 if (!empty($messages)) {
   print('<div id="messages">');
-  // Выводим все сообщения.
   foreach ($messages as $message) {
     print($message);
   }
@@ -23,11 +22,11 @@ if (!empty($messages)) {
         <form action="index.php" method="POST">
             <label for="name" <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
             <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>>Введите имя:<br>
-                <input name="name" placeholder="Введите имя" value='<?php isset($COOKIE['name_error'])? print trim($COOKIE['name_error']) : print $values['name'];?>'><br>
+                <input name="name" placeholder="Введите имя" value='<?php isset($COOKIE['name_error'])? print '' : print $values['name'];?>'><br>
             </label>
             <label for="email" <?php if (!empty($errors['email'])) {print 'class="error"';} ?>
             <?php if(empty($errors['email'])&&!empty($values['email'])){print 'class="ok"';}?>>Адрес электронной почты:<br>
-                <input name="email" type="email" placeholder="Введите email" value='<?php isset($COOKIE['email_error'])? print trim($COOKIE['email_error']) : print $values['email'];?>'><br>
+                <input name="email" type="email" placeholder="Введите email" value='<?php isset($COOKIE['email_error'])? '' : print $values['email'];?>'><br>
             </label>
             <label for="year" <?php if (!empty($errors['year'])) {print 'class="error"';} ?>
             <?php if(empty($errors['year'])&&!empty($values['year'])){print 'class="ok"';}?>>Год рождения</label>

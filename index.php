@@ -127,8 +127,7 @@ else{
     setcookie('name_error','',100);
     setcookie('name_error','',100);
   }
-}
-// Сохранение в базу данных.
+  // Сохранение в базу данных.
 $user = 'u52984';
 $pass = '8295850';
 $db = new PDO('mysql:host=localhost;dbname=u52984', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
@@ -152,3 +151,4 @@ exit();
 }
 // stmt - это "дескриптор состояния"
 header('Location: ?save=1');
+}

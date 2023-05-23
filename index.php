@@ -87,7 +87,7 @@ else{
     setcookie('name_value',$_POST['name'],time()+30*24*60*60);
   }
   if(empty($_POST['email'])||!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z.]{2,5}$/", $_POST['email'])){
-    setcookie('email_error','',time+24*60*60);
+    setcookie('email_error','',time()+24*60*60);
     $errors=TRUE;
   }
   else{

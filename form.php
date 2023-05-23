@@ -26,17 +26,18 @@ if (!empty($messages)) {
                 Введите имя:<br>
                 <input name="name" placeholder="Введите имя" value='<?php isset($COOKIE['name_error'])? print trim($COOKIE['name_error']) : print $values['name'];?>'><br>
             </label>
-            <label for="email" <?php if (!empty($errors['email'])) {print 'class="error"';} ?>>
+            <label for="email" <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
+            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>>
                 Адрес электронной почты:<br>
                 <input name="email" type="email" placeholder="Введите email" /><br>
             </label>
-            <label for="year" <?php if (!empty($errors['year'])) {print 'class="error"';} ?>>Год рождения</label>
+            <label for="year" <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
+            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>>Год рождения</label>
             <select name="year">
-                <?php 
-    for ($i = 1922; $i <= 2022; $i++) {
-      printf('<option value="%d">%d</option>', $i, $i);
-    }
-    ?>
+            <option selected ><?php !empty($values['year']) ? print ($values['year']) : print '' ?></option>
+                <?php for ($i = 1922; $i <= 2022; $i++) {
+                    printf('<option value="%d">%d</option>', $i, $i);
+                }?>
             </select>
             <br>
             <label for="gender" <?php if (!empty($errors['gender'])) {print 'class="error"';} ?>>Выберите пол:</label><br>
@@ -65,7 +66,8 @@ if (!empty($messages)) {
             </select>
             <br>
             <label for="biography" <?php if (!empty($errors['biography'])) {print 'class="error"';} ?>>Биография:</label><br>
-            <textarea name="biography">Напишите о себе</textarea><br>
+            <textarea name="biography" <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
+            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>></textarea><br>
             <label><input type="checkbox" checked="checked" name="check-kontrol" <?php if (!empty($errors['check-kontrol'])) {print 'class="error"';} ?>>
                 с контрактом ознакомлен(а)</label>
             <br>

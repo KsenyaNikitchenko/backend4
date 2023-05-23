@@ -93,7 +93,7 @@ else{
   else{
     setcookie('email_value',$_POST['email'],time()+30*24*60*60);
   }
-  if($_POST('year'=='')){
+  if($_POST['year']==''){
     setcookie('year_error','',time()+24*60*60)
     $errors=TRUE;
   }

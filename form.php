@@ -20,7 +20,7 @@ if (!empty($messages)) {
     <div class="form">
         <h1>Сверхспособности</h1>
         <form action="index.php" method="POST">
-            <label for="name" <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
+            <label for="name" class='ok' <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
             <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>>Введите имя:<br>
                 <input name="name" placeholder="Введите имя" value='<?php if(!empty($values['name'])) print $values['name'];?>'><br>
             </label>
@@ -60,7 +60,7 @@ if (!empty($messages)) {
             <br>
             <label for="biography" <?php if (!empty($errors['biography'])) {print 'class="error"';} ?>>Биография:</label><br>
             <textarea name="biography" <?php if (!empty($errors['biography'])) {print 'class="error"';} ?>
-            <?php if(empty($errors['biography'])&&!empty($values['biography'])){print 'class="ok"';}?>><?php if(!empty($values['name'])) print $values['biography'];?></textarea><br>
+            <?php if(empty($errors['biography'])&&!empty($values['biography'])){print 'class="ok"';}?>><?php if(!empty($values['biography'])) print $values['biography'];?></textarea><br>
             <label><input type="checkbox" checked="checked" name="check-kontrol" <?php if (!empty($errors['check-kontrol'])) {print 'class="error"';} ?>>с контрактом ознакомлен(а)</label>
             <br>
             <input type="submit" class="submit" value="Отправить" />

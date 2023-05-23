@@ -24,7 +24,7 @@ if (!empty($messages)) {
             <label for="name" <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
             <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>>
                 Введите имя:<br>
-                <input name="name" placeholder="Введите имя" value='<?php isset($COOKIE['name_error'])? print trim($COOKIE['name_error']:print $values['name'];?>"><br>
+                <input name="name" placeholder="Введите имя" value='<?php isset($COOKIE['name_error'])? print trim($COOKIE['name_error']) : print $values['name'];?>"><br>
             </label>
             <label for="email" <?php if (!empty($errors['email'])) {print 'class="error"';} ?>>
                 Адрес электронной почты:<br>

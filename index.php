@@ -10,7 +10,7 @@
   border: 2px solid red;
 }
 .error_m{
-    text-decoration-line: underline;
+    text-decoration-line: underline red;
 }
     </style>
 </head>
@@ -41,19 +41,19 @@ if (!empty($messages)) {
                 }?>
             </select>
             <br>
-            <label for="gender">Выберите пол:</label><br>
+            <label for="gender" <?php if($errors['gender']){print 'class="error_m"'} ?>>Выберите пол:</label><br>
             <label><input type="radio" checked="checked" name="gender" value="female" <?php if (isset($values['gender'])&&$values['gender'] == 'female') print("checked"); ?>>
                 Женский</label>
             <label><input type="radio" name="gender" value="male" <?php if (isset($values['gender'])&&$values['gender'] == 'male') print("checked"); ?>>
                 Мужской</label>
             <br>
-            <label for="limbs" <?php if ($errors['limbs']) {print 'class="error_check"';} ?>>Количество конечностей:</label><br>
+            <label for="limbs" <?php if ($errors['limbs']) {print 'class="error_m"';} ?>>Количество конечностей:</label><br>
             <label><input type="radio" checked="checked" name="limbs" value="1" <?php if (isset($values['limbs'])&&$values['limbs'] == '1') print("checked"); ?>>1</label>
             <label><input type="radio" name="limbs" value="2" <?php if (isset($values['limbs'])&&$values['limbs'] == '2') print("checked"); ?>>2</label>
             <label><input type="radio" name="limbs" value="3" <?php if (isset($values['limbs'])&&$values['limbs'] == '3') print("checked"); ?>>3</label>
             <label><input type="radio" name="limbs" value="4" <?php if (isset($values['limbs'])&&$values['limbs'] == '4') print("checked"); ?>>4</label>
             <br>
-            <label for="superpowers" <?php if ($errors['super']) {print 'class="error"';} ?>>Сверхспособности:</label><br>
+            <label for="superpowers" <?php if ($errors['super']) {print 'class="error_m"';} ?>>Сверхспособности:</label><br>
             <select name="super[]" multiple="multiple">
                 <option id="deathless" value="deathless" <?php if(isset($values['super']['deathless'])&&$values['super']['deathless']=='deathless') print("selected") ?>>Бессмертие</option>
                 <option id="walls" value="walls" <?php if(isset($values['super']['walls'])&&$values['super']['walls']=='walls') print("selected") ?>>Прохождение сквозь стены</option>

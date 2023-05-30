@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
   $errors['superpowers'] = !empty($_COOKIE['superpowers_error']);
   $errors['biography'] = !empty($_COOKIE['biography_error']);
   // Выдаем сообщения об ошибках.
-  if ($errors['name']) {
+  if (!$errors['name']) {
     setcookie('name_error', '', 100);// Удаляем куку, указывая время устаревания в прошлом.
     $messages['name_message'] = '<div class="error">Заполните имя.</div>';// Выводим сообщение.
   }

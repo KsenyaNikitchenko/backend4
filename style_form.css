@@ -22,35 +22,6 @@ h1,h2 {
     text-align: center;
     margin: 5px;
 }
-.error{
-    color: rgb(206, 21, 21);
-    border: 2px solid red;
-    margin: 5px;
-    font-weight: 900;
-    text-decoration-line: underline;
-    font-size: larger;
-}
-.error_m{
-    text-decoration-line: underline;
-}
-.ok{
-    color: rgb(21, 206, 101);
-    font-weight: 900;
-    font-size:large;
-    border: 2px solid green;
-}
-#messages{
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    text-align: center;
-    font-family: Arial, Verdana,  sans-serif;
-}
-.error_check {
-    text-decoration: underline 2px solid red;
-    margin: 5px;
-  }
 .submit{
     background-color: darkcyan;
     padding: 10px 30px;

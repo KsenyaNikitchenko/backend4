@@ -24,31 +24,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('email_error', '', 100000);
     // Выводим сообщение.
-    $messages[] = '<div class="error">Заполните имя.</div>';
+    $messages[] = '<div class="error">Заполните email.</div>';
   }
   if ($errors['year']) {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('year_error', '', 100000);
     // Выводим сообщение.
-    $messages[] = '<div class="error">Заполните имя.</div>';
+    $messages[] = '<div class="error">Заполните год рождения.</div>';
   }
   if ($errors['gender']) {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('gender_error', '', 100000);
     // Выводим сообщение.
-    $messages[] = '<div class="error">Заполните имя.</div>';
+    $messages[] = '<div class="error">Выберите пол.</div>';
   }
   if ($errors['limbs']) {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('limbs_error', '', 100000);
     // Выводим сообщение.
-    $messages[] = '<div class="error">Заполните имя.</div>';
+    $messages[] = '<div class="error">Укажите количество конечностей.</div>';
   }
   if ($errors['biography']) {
     // Удаляем куку, указывая время устаревания в прошлом.
     setcookie('biography_error', '', 100000);
     // Выводим сообщение.
-    $messages[] = '<div class="error">Заполните имя.</div>';
+    $messages[] = '<div class="error">Расскажите что-нибудь о себе.</div>';
   }
 
   // Складываем предыдущие значения полей в массив, если есть.

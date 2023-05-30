@@ -20,14 +20,13 @@ if (!empty($messages)) {
         <h1>Сверхспособности</h1>
         <form action="" method="POST">
             <label for="name">Введите имя:<br>
-            <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value='<?php print $values['name']; ?>'><br>
+            <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value='<?php if($values['name']) print $values['name']; ?>'><br>
             </label>
             <label for="email">Адрес электронной почты:<br>
             <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value='<?php print $values['email'];?>'><br>
             </label>
             <label for="year">Год рождения</label>
-            <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>
-            <?php if(empty($errors['year'])&&!empty($values['year'])){print 'class="ok"';}?>>
+            <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>>
             <option selected ><?php !empty($values['year']) ? print ($values['year']) : print '' ?></option>
                 <?php for ($i = 1922; $i <= 2022; $i++) {
                     printf('<option value="%d">%d</option>', $i, $i);

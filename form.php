@@ -47,7 +47,7 @@ if (!empty($messages)) {
             <br>
             <label for="superpowers" <?php if ($errors['superpowers']) {print 'class="error"';} ?>>Сверхспособности:</label><br>
             <select name="superpowers[]" multiple="multiple">
-                <option value="deathless" <?php if(isset($values['super']['deathless'])&&$values['super']['deathless']=='deathless') print("selected")>Бессмертие</option>
+                <option value="deathless" <?php if(isset($values['super']['deathless'])&&$values['super']['deathless']=='deathless') print("selected") ?>>Бессмертие</option>
                 <option value="walls" selected="selected">Прохождение сквозь стены</option>
                 <option value="levitation">Левитация</option>
                 <option value="elements">Управление стихиями</option>

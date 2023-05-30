@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
     $messages['email_message'] = '<div class="error">Введите e-mail<br></div>';
   }
   if ($errors['year']) {
-    setcookie('year_error', '', 100);
+    setcookie('year_error', '+', 100);
     $messages['year_message'] = '<div class="error">Выберите из списка год рождения<br></div>';
   }
   if ($errors['gender']) {

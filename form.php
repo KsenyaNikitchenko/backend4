@@ -10,7 +10,6 @@
 <body>
 <?php
 if (!empty($messages)) {
-  if(isset($messages['save']))print('<div id="messages" class="ok">'); else print('div id="messages"');
   foreach ($messages as $m) {
     print($m);
   }

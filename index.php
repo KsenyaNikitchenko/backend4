@@ -5,6 +5,14 @@
     <meta charset="utf-8">
     <title>Сверхспособности</title>
     <link rel="stylesheet" href="style_form.css">
+    <style>
+.error {
+  border: 2px solid red;
+}
+.error_m{
+    text-decoration-line: underline;
+}
+    </style>
 </head>
 
 <body>

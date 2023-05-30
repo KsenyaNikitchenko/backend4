@@ -10,7 +10,7 @@
 <body>
 <?php
 if (!empty($messages)) {
-  print('<div id="messages">');
+  if(isset($messages['save']))print('<div id="messages" class="ok">'); else print('div id="messages"');
   foreach ($messages as $m) {
     print($m);
   }
@@ -20,7 +20,7 @@ if (!empty($messages)) {
     <div class="form">
         <h1>Сверхспособности</h1>
         <form action="index.php" method="POST">
-            <label for="name" class='ok' <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
+            <label for="name"<?php if (!empty($errors['name'])) {print 'class="error"';} ?>
             <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>>Введите имя:<br>
                 <input name="name" placeholder="Введите имя" value='<?php if(!empty($values['name'])) print $values['name'];?>'><br>
             </label>

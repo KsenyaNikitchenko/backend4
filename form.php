@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['biography'] = !empty($_COOKIE['biography_error']);
   if ($errors['name']) {
     setcookie('name_error', '', 100);
-    $messages[] = '<div class="error">Заполните имя.</div>';
+    $messages[] = '<div class="error_m">Заполните имя.</div>';
   }
   if ($errors['email']) {
     setcookie('email_error', '', 100);

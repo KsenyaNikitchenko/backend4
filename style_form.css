@@ -30,6 +30,9 @@ h1,h2 {
     text-decoration-line: underline;
     font-size: larger;
 }
+.error_m{
+    text-decoration-line: underline;
+}
 .ok{
     color: rgb(21, 206, 101);
     font-weight: 900;

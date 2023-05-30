@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
   if($errors['super']){
     setcookie('super_error','',100);
-    $messages[]='<div class="error">Выберите минимум одну сверхспособность.</div>'
+    $messages[]='<div class="error">Выберите минимум одну сверхспособность.</div>';
   }
   if ($errors['biography']) {
     setcookie('biography_error', '', 100);

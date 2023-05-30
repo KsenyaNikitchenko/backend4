@@ -21,7 +21,7 @@ if (!empty($messages)) {
         <form action="" method="POST">
             <label for="name">Введите имя:<br>
                 <input name="name" placeholder="Введите имя" <?php if ($errors['name']) {print 'class="error"';} ?>
-            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?> value='<?php if(!empty($values['name'])) print $values['name'];?>'><br>
+            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?> value='<?php print $values['name'];?>'><br>
             </label>
             <label for="email">Адрес электронной почты:<br>
                 <input name="email" type="email" placeholder="Введите email" <?php if ($errors['email']){print 'class="error"';} ?>

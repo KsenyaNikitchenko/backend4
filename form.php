@@ -20,12 +20,12 @@ if (!empty($messages)) {
         <h1>Сверхспособности</h1>
         <form action="" method="POST">
             <label for="name">Введите имя:<br>
-                <input name="name" placeholder="Введите имя" <?php if ($errors['name']) {print 'class="error"';} ?>
-            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?> value='<?php print $values['name'];?>'><br>
+                <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?>
+            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?> value="<?php print $values['name'];?>"><br>
             </label>
             <label for="email">Адрес электронной почты:<br>
-                <input name="email" type="email" placeholder="Введите email" <?php if ($errors['email']){print 'class="error"';} ?>
-            <?php if(empty($errors['email'])&&!empty($values['email'])){print 'class="ok"';}?> value='<?php if(!empty($values['email'])) print $values['email'];?>'><br>
+                <input name="email" type="email" <?php if ($errors['email']){print 'class="error"';} ?>
+            <?php if(empty($errors['email'])&&!empty($values['email'])){print 'class="ok"';}?> value="<?php if(!empty($values['email'])) print $values['email'];?>"><br>
             </label>
             <label for="year">Год рождения</label>
             <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>
@@ -58,7 +58,7 @@ if (!empty($messages)) {
             </select>
             <br>
             <label for="biography" <?php if ($errors['biography']) {print 'class="error"';} ?>>Биография:</label><br>
-            <textarea name="biography" <?php if (!empty($errors['biography'])) {print 'class="error"';} ?>
+            <textarea name="biography" <?php if ($errors['biography']) {print 'class="error"';} ?>
             <?php if(empty($errors['biography'])&&!empty($values['biography'])){print 'class="ok"';}?>><?php if(!empty($values['biography'])) print $values['biography'];?></textarea><br>
             <label><input type="checkbox" checked="checked" name="check-kontrol">с контрактом ознакомлен(а)</label>
             <br>

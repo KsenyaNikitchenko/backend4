@@ -47,11 +47,11 @@ if (!empty($messages)) {
             <br>
             <label for="superpowers" <?php if ($errors['super']) {print 'class="error"';} ?>>Сверхспособности:</label><br>
             <select name="superpowers[]" multiple="multiple">
-                <option value="deathless" <?php if(isset($values['super']['deathless'])&&$values['super']['deathless']=='deathless') print("selected") ?>>Бессмертие</option>
-                <option value="walls" <?php if(isset($values['super']['walls'])&&$values['super']['walls']=='walls') print("selected") ?>>Прохождение сквозь стены</option>
-                <option value="levitation" <?php if(isset($values['super']['levitation'])&&$values['super']['levitation']=='levitation') print("selected") ?>>Левитация</option>
-                <option value="elements" <?php if(isset($values['super']['elements'])&&$values['super']['elements']=='elements') print("selected") ?>>Управление стихиями</option>
-                <option value="time travel" <?php if(isset($values['super']['time travel'])&&$values['super']['time travel']=='time travel') print("selected") ?>>Путешествие во времени</option>
+                <option id="deathless" value="deathless" <?php if(isset($values['super']['deathless'])&&$values['super']['deathless']=='deathless') print("selected") ?>>Бессмертие</option>
+                <option id="walls" value="walls" <?php if(isset($values['super']['walls'])&&$values['super']['walls']=='walls') print("selected") ?>>Прохождение сквозь стены</option>
+                <option id="levitation" value="levitation" <?php if(isset($values['super']['levitation'])&&$values['super']['levitation']=='levitation') print("selected") ?>>Левитация</option>
+                <option id="elements" value="elements" <?php if(isset($values['super']['elements'])&&$values['super']['elements']=='elements') print("selected") ?>>Управление стихиями</option>
+                <option id="time travel" value="time travel" <?php if(isset($values['super']['time travel'])&&$values['super']['time travel']=='time travel') print("selected") ?>>Путешествие во времени</option>
             </select>
             <br>
             <label for="biography">Биография:</label><br>

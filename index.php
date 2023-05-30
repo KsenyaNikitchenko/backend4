@@ -6,9 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
   // В суперглобальном массиве $_COOKIE PHP хранит все имена и значения куки текущего запроса.
   // Выдаем сообщение об успешном сохранении.
   if (!empty($_COOKIE['save'])) {
-    // Удаляем куку, указывая время устаревания в прошлом.
-    setcookie('save', '', 100000);
-    // Если есть параметр save, то выводим сообщение пользователю.
+    setcookie('save', '', 100);
     $messages[] = 'Спасибо, результаты сохранены.';
   }
   // Складываем признак ошибок в массив.
@@ -22,32 +20,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
   $errors['biography'] = !empty($_COOKIE['biography']);
   // Выдаем сообщения об ошибках.
   if ($errors['name']) {
-    setcookie('name_error', '', 100000);// Удаляем куку, указывая время устаревания в прошлом.
-    $messages['name'] = '<div class="error">Заполните имя.</div>';// Выводим сообщение.
+    setcookie('name_error', '', 100);// Удаляем куку, указывая время устаревания в прошлом.
+    $messages['name_message'] = '<div class="error">Заполните имя.</div>';// Выводим сообщение.
   }
   if ($errors['email']) {
-    setcookie('email_error', '', 100000);
-    $messages['email'] = '<div class="error">Введите e-mail<br></div>';
+    setcookie('email_error', '', 100);
+    $messages['email_message'] = '<div class="error">Введите e-mail<br></div>';
   }
   if ($errors['year']) {
-    setcookie('year_error', '', 100000);
-    $messages['year'] = '<div class="error">Выберите из списка год рождения<br></div>';
+    setcookie('year_error', '', 100);
+    $messages['year_message'] = '<div class="error">Выберите из списка год рождения<br></div>';
   }
   if ($errors['gender']) {
-    setcookie('gender_error', '', 100000);
-    $messages['gender'] = '<div class="error">Укажите ваш пол<br></div>';
+    setcookie('gender_error', '', 100);
+    $messages['gender_message'] = '<div class="error">Укажите ваш пол<br></div>';
   }
   if ($errors['limbs']) {
-    setcookie('limbs_error', '', 100000);
-    $messages['limbs'] = '<div class="error">Выберите количество конечностей<br></div>';
+    setcookie('limbs_error', '', 100);
+    $messages['limbs_message'] = '<div class="error">Выберите количество конечностей<br></div>';
   }
   if ($errors['superpowers']) {
-    setcookie('superpowers_error', '', 100000);
-    $messages['superpowers'] = '<div class="error">Выберите минимум одну сверхспособность<br></div>';
+    setcookie('superpowers_error', '', 100);
+    $messages['superpowers_message'] = '<div class="error">Выберите минимум одну сверхспособность<br></div>';
   }
   if ($errors['biography']) {
-    setcookie('biography_error', '', 100000);
-    $messages['bigraphy'] = '<div class="error">Расскажите о себе<br></div>';
+    setcookie('biography_error', '', 100);
+    $messages['bigraphy_message'] = '<div class="error">Расскажите о себе<br></div>';
   }
   // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
@@ -56,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
   $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
   $values['gender'] = empty($_COOKIE['gender_value']) ? '' : $_COOKIE['gender_value'];
   $values['limbs'] = empty($_COOKIE['limbs_value']) ? '' : $_COOKIE['limbs_value'];
+  $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
   $values['superpowers'] = [];
   if(!empty($_COOKIE['superpowers_value'])) {
     $super_value = unserialize($_COOKIE['superpowers_value']);
@@ -65,10 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
       }
     }
   }
-  $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
   // Включаем содержимое файла form.php.
-  // В нем будут доступны переменные $messages, $errors и $values для вывода 
-  // сообщений, полей с ранее заполненными данными и признаками ошибок.
+  // В нем будут доступны переменные $messages, $errors и $values для вывода сообщений, полей с ранее заполненными данными и признаками ошибок.
   include('form.php');
 }
 else{

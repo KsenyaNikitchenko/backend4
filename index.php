@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
   }
   // Складываем признак ошибок в массив.
   $errors = array();
-  $errors['name'] = !empty($_COOKIE['name']);
-  $errors['email'] = !empty($_COOKIE['email']);
-  $errors['year'] = !empty($_COOKIE['year']);
-  $errors['gender'] = !empty($_COOKIE['gender']);
-  $errors['limbs'] = !empty($_COOKIE['limbs']);
-  $errors['superpowers'] = !empty($_COOKIE['superpowers']);
-  $errors['biography'] = !empty($_COOKIE['biography']);
+  $errors['name'] = !empty($_COOKIE['name_errors']);
+  $errors['email'] = !empty($_COOKIE['email_errors']);
+  $errors['year'] = !empty($_COOKIE['year_errors']);
+  $errors['gender'] = !empty($_COOKIE['gender_errors']);
+  $errors['limbs'] = !empty($_COOKIE['limbs_errors']);
+  $errors['superpowers'] = !empty($_COOKIE['superpowers_errors']);
+  $errors['biography'] = !empty($_COOKIE['biography_errors']);
   // Выдаем сообщения об ошибках.
   if ($errors['name']) {
     setcookie('name_error', '', 100);// Удаляем куку, указывая время устаревания в прошлом.

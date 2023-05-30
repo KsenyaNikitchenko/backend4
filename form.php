@@ -46,7 +46,7 @@ if (!empty($messages)) {
             <label><input type="radio" name="limbs" value="4" <?php if (isset($values['limbs'])&&$values['limbs'] == '4') print("checked"); ?>>4</label>
             <br>
             <label for="superpowers" <?php if ($errors['super']) {print 'class="error"';} ?>>Сверхспособности:</label><br>
-            <select name="superpowers[]" multiple="multiple">
+            <select name="super[]" multiple="multiple">
                 <option id="deathless" value="deathless" <?php if(isset($values['super']['deathless'])&&$values['super']['deathless']=='deathless') print("selected") ?>>Бессмертие</option>
                 <option id="walls" value="walls" <?php if(isset($values['super']['walls'])&&$values['super']['walls']=='walls') print("selected") ?>>Прохождение сквозь стены</option>
                 <option id="levitation" value="levitation" <?php if(isset($values['super']['levitation'])&&$values['super']['levitation']=='levitation') print("selected") ?>>Левитация</option>

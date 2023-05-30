@@ -20,10 +20,10 @@ if (!empty($messages)) {
         <h1>Сверхспособности</h1>
         <form action="" method="POST">
             <label for="name">Введите имя:<br>
-            <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>"><br>
+            <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value='<?php print $values['name']; ?>'><br>
             </label>
             <label for="email">Адрес электронной почты:<br>
-            <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email'];?>"><br>
+            <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value='<?php print $values['email'];?>'><br>
             </label>
             <label for="year">Год рождения</label>
             <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>
@@ -56,7 +56,7 @@ if (!empty($messages)) {
             </select>
             <br>
             <label for="biography">Биография:</label><br>
-            <textarea name="biography" <?php if ($errors['biography']) {print 'class="error"';} ?>><?php if(!empty($values['biography'])) print $values['biography'];?></textarea><br>
+            <textarea name="biography" <?php if ($errors['biography']) {print 'class="error"';} ?>><?php if($values['biography']) print $values['biography'];?></textarea><br>
             <label><input type="checkbox" checked="checked" name="check-kontrol">с контрактом ознакомлен(а)</label>
             <br>
             <input type="submit" class="submit" value="Отправить" />

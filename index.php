@@ -1,15 +1,11 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном массиве $_GET PHP хранит все параметры, переданные в текущем запросе через URL.
-    // Массив для временного хранения сообщений пользователю.
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $messages = array();
-  // В суперглобальном массиве $_COOKIE PHP хранит все имена и значения куки текущего запроса.
-  // Выдаем сообщение об успешном сохранении.
   if (!empty($_COOKIE['save'])) {
     setcookie('save', '', 100);
-    $messages['save'] = 'Спасибо, результаты сохранены.';
+    $messages[] = 'Спасибо, результаты сохранены.';
   }
-  // Складываем признак ошибок в массив.
   $errors = array();
   $errors['name'] = !empty($_COOKIE['name_error']);
   $errors['email'] = !empty($_COOKIE['email_error']);
@@ -18,35 +14,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
   $errors['limbs'] = !empty($_COOKIE['limbs_error']);
   $errors['superpowers'] = !empty($_COOKIE['superpowers_error']);
   $errors['biography'] = !empty($_COOKIE['biography_error']);
-  // Выдаем сообщения об ошибках.
   if ($errors['name']) {
-    setcookie('name_error', '+', 100);// Удаляем куку, указывая время устаревания в прошлом.
-    $messages['name_message'] = '<div class="error">Заполните имя.</div>';// Выводим сообщение.
+    // Удаляем куку, указывая время устаревания в прошлом.
+    setcookie('name_error', '', 100000);
+    // Выводим сообщение.
+    $messages[] = '<div class="error">Заполните имя.</div>';
   }
   if ($errors['email']) {
-    setcookie('email_error', '+', 100);
-    $messages['email_message'] = '<div class="error">Введите e-mail<br></div>';
+    // Удаляем куку, указывая время устаревания в прошлом.
+    setcookie('email_error', '', 100000);
+    // Выводим сообщение.
+    $messages[] = '<div class="error">Заполните имя.</div>';
   }
   if ($errors['year']) {
-    setcookie('year_error', '+', 100);
-    $messages['year_message'] = '<div class="error">Выберите из списка год рождения<br></div>';
+    // Удаляем куку, указывая время устаревания в прошлом.
+    setcookie('year_error', '', 100000);
+    // Выводим сообщение.
+    $messages[] = '<div class="error">Заполните имя.</div>';
   }
   if ($errors['gender']) {
-    setcookie('gender_error', '', 100);
-    $messages['gender_message'] = '<div class="error">Укажите ваш пол<br></div>';
+    // Удаляем куку, указывая время устаревания в прошлом.
+    setcookie('gender_error', '', 100000);
+    // Выводим сообщение.
+    $messages[] = '<div class="error">Заполните имя.</div>';
   }
   if ($errors['limbs']) {
-    setcookie('limbs_error', '', 100);
-    $messages['limbs_message'] = '<div class="error">Выберите количество конечностей<br></div>';
-  }
-  if ($errors['superpowers']) {
-    setcookie('superpowers_error', '', 100);
-    $messages['superpowers_message'] = '<div class="error">Выберите минимум одну сверхспособность<br></div>';
+    // Удаляем куку, указывая время устаревания в прошлом.
+    setcookie('limbs_error', '', 100000);
+    // Выводим сообщение.
+    $messages[] = '<div class="error">Заполните имя.</div>';
   }
   if ($errors['biography']) {
-    setcookie('biography_error', '', 100);
-    $messages['bigraphy_message'] = '<div class="error">Расскажите о себе<br></div>';
+    // Удаляем куку, указывая время устаревания в прошлом.
+    setcookie('biography_error', '', 100000);
+    // Выводим сообщение.
+    $messages[] = '<div class="error">Заполните имя.</div>';
   }
+
   // Складываем предыдущие значения полей в массив, если есть.
   $values = array();
   $values['name'] = empty($_COOKIE['name_value']) ? '' : $_COOKIE['name_value'];
@@ -54,83 +58,81 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
   $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
   $values['gender'] = empty($_COOKIE['gender_value']) ? '' : $_COOKIE['gender_value'];
   $values['limbs'] = empty($_COOKIE['limbs_value']) ? '' : $_COOKIE['limbs_value'];
+  $values['superpower'] = empty($_COOKIE['superpower_value']) ? '' : $_COOKIE['superpower_value'];
   $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
-  $values['superpowers'] = [];
-  if(!empty($_COOKIE['superpowers_value'])) {
-    $super_value = unserialize($_COOKIE['superpowers_value']);
-    foreach ($super_value as $s) {
-      if (!empty($super[$s])) {
-          $values['superpowers'][$s] = $s;
-      }
-    }
-  }
   // Включаем содержимое файла form.php.
-  // В нем будут доступны переменные $messages, $errors и $values для вывода сообщений, полей с ранее заполненными данными и признаками ошибок.
+  // В нем будут доступны переменные $messages, $errors и $values для вывода 
+  // сообщений, полей с ранее заполненными данными и признаками ошибок.
   include('form.php');
 }
-else{
-  $errors=FALSE;
-  if(empty($_POST['name'])){
-    setcookie('name_error','',time+24*60*60);
-    $errors=TRUE;
+else {
+  // Проверяем ошибки.
+  $errors = FALSE;
+  if (empty($_POST['name'])) {
+    setcookie('name_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
   }
-  else if(!preg_match("/^[а-яё]|[a-z]$/iu",$_POST['name'])){
-    setcookie('name_error',$_POST['name'],time+24*60*60);
-    $errors=TRUE;
+  else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);
   }
-  else{
-    setcookie('name_value',$_POST['name'],time()+30*24*60*60);
+  if (empty($_POST['email'])) {
+    setcookie('email_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
   }
-  if(empty($_POST['email'])){
-    setcookie('email_error','',time()+24*60*60);
-    $errors=TRUE;
+  else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
   }
-  else if(!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z.]{2,5}$/", $_POST['email'])){
-    setcookie('email_error',$_POST['email'],time()+24*60*60);
-    $errors=TRUE;
+  if (empty($_POST['year'])) {
+    setcookie('year_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
   }
-  else{
-    setcookie('email_value',$_POST['email'],time()+30*24*60*60);
+  else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('year_value', $_POST['year'], time() + 30 * 24 * 60 * 60);
   }
-  if($_POST['year']==''){
-    setcookie('year_error','',time()+24*60*60);
-    $errors=TRUE;
+  if (empty($_POST['gender'])) {
+    setcookie('gender_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
   }
-  else{
-    setcookie('year_value',$_POST['year'],time()+30*24*60*60);
+  else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
   }
-  if(empty($_POST['gender'])){
-    setcookie('gender_error','',time()+24*60*60);
-    $errors=TRUE;
+  if (empty($_POST['limbs'])) {
+    setcookie('limbs_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
   }
-  else{
-    setcookie('gender_value',$_POST['gender'],time()+30*24*60*60);
+  else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('limbs_value', $_POST['limbs'], time() + 30 * 24 * 60 * 60);
   }
-  if(empty($_POST['limbs'])){
-    setcookie('limbs_error','',time()+24*60*60);
-    $errors=TRUE;
+  if (empty($_POST['biography'])) {
+    setcookie('biography_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
   }
-  else{
-    setcookie('limbs_value',$_POST['limbs'],time()+30*24*60*60);
+  else {
+    // Сохраняем ранее введенное в форму значение на месяц.
+    setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
   }
-  if(empty($_POST['biography'])){
-    setcookie('biography_error','',time()+24*60*60);
-    $errors=TRUE;
-  }
-  else{
-    setcookie('biography_value',$_POST['biography'],time()+30*24*60*60);
-  }
-  if($errors){
+  //superpowers
+
+
+  if ($errors) {
+    // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
     header('Location: index.php');
     exit();
   }
-  else{
-    setcookie('name_error','',100);
-    setcookie('email_error','',100);
-    setcookie('gender_error','',100);
-    setcookie('year_error','',100);
-    setcookie('name_error','',100);
-    setcookie('name_error','',100);
+  else {
+    // Удаляем Cookies с признаками ошибок.
+    setcookie('name_error', '', 100000);
+    setcookie('email_error', '', 100000);
+    setcookie('year_error', '', 100000);
+    setcookie('gender_error', '', 100000);
+    setcookie('limbs_error', '', 100000);
+    setcookie('superpower_error', '', 100000);
+    setcookie('fio_error', '', 100000);
   }
   // Сохранение в базу данных.
 $user = 'u52984';

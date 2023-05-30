@@ -20,27 +20,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
   if ($errors['email']) {
     setcookie('email_error', '', 100);
-    $messages[] = '<div class="error">Заполните email.</div>';
+    $messages[] = '<div class="error_m">Заполните email.</div>';
   }
   if ($errors['year']) {
     setcookie('year_error', '', 100);
-    $messages[] = '<div class="error">Заполните год рождения.</div>';
+    $messages[] = '<div class="error_m">Заполните год рождения.</div>';
   }
   if ($errors['gender']) {
     setcookie('gender_error', '', 100);
-    $messages[] = '<div class="error">Выберите пол.</div>';
+    $messages[] = '<div class="error_m">Выберите пол.</div>';
   }
   if ($errors['limbs']) {
     setcookie('limbs_error', '', 100);
-    $messages[] = '<div class="error">Укажите количество конечностей.</div>';
+    $messages[] = '<div class="error_m">Укажите количество конечностей.</div>';
   }
   if($errors['super']){
     setcookie('super_error','',100);
-    $messages[]='<div class="error">Выберите минимум одну сверхспособность.</div>';
+    $messages[]='<div class="error_m">Выберите минимум одну сверхспособность.</div>';
   }
   if ($errors['biography']) {
     setcookie('biography_error', '', 100);
-    $messages[] = '<div class="error">Расскажите что-нибудь о себе.</div>';
+    $messages[] = '<div class="error_m">Расскажите что-нибудь о себе.</div>';
   }
 
   // Складываем предыдущие значения полей в массив, если есть.
@@ -76,12 +76,20 @@ else {
     setcookie('name_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
+  else if(!preg_match("/^[а-яё]|[a-z]$/iu", $_POST['name'])){
+    setcookie('name_error', $_POST['name'], time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
   else {
     // Сохраняем ранее введенное в форму значение на месяц.
     setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);
   }
   if (empty($_POST['email'])) {
     setcookie('email_error', '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else if(!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z.]{2,5}$/", $_POST['email'])){
+    setcookie('email_error', $_POST['email'], time() + 24 * 60 * 60);
     $errors = TRUE;
   }
   else {

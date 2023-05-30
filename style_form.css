@@ -44,6 +44,10 @@ h1,h2 {
     text-align: center;
     font-family: Arial, Verdana,  sans-serif;
 }
+.error_check {
+    text-decoration: underline 2px solid red;
+    margin: 5px;
+  }
 .submit{
     background-color: darkcyan;
     padding: 10px 30px;

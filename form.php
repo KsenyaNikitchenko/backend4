@@ -20,17 +20,17 @@ if (!empty($messages)) {
     <div class="form">
         <h1>Сверхспособности</h1>
         <form action="index.php" method="POST">
-            <label for="name"<?php if (!empty($errors['name'])) {print 'class="error"';} ?>
-            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?>>Введите имя:<br>
-                <input name="name" placeholder="Введите имя" value='<?php if(!empty($values['name'])) print $values['name'];?>'><br>
+            <label for="name">Введите имя:<br>
+                <input name="name" placeholder="Введите имя" <?php if (!empty($errors['name'])) {print 'class="error"';} ?>
+            <?php if(empty($errors['name'])&&!empty($values['name'])){print 'class="ok"';}?> value='<?php if(!empty($values['name'])) print $values['name'];?>'><br>
             </label>
-            <label for="email" <?php if (!empty($errors['email'])) {print 'class="error"';} ?>
-            <?php if(empty($errors['email'])&&!empty($values['email'])){print 'class="ok"';}?>>Адрес электронной почты:<br>
-                <input name="email" type="email" placeholder="Введите email" value='<?php if(!empty($values['email'])) print $values['email'];?>'><br>
+            <label for="email">Адрес электронной почты:<br>
+                <input name="email" type="email" placeholder="Введите email" <?php if (!empty($errors['email'])) {print 'class="error"';} ?>
+            <?php if(empty($errors['email'])&&!empty($values['email'])){print 'class="ok"';}?> value='<?php if(!empty($values['email'])) print $values['email'];?>'><br>
             </label>
-            <label for="year" <?php if (!empty($errors['year'])) {print 'class="error"';} ?>
-            <?php if(empty($errors['year'])&&!empty($values['year'])){print 'class="ok"';}?>>Год рождения</label>
-            <select name="year">
+            <label for="year">Год рождения</label>
+            <select name="year" <?php if (!empty($errors['year'])) {print 'class="error"';} ?>
+            <?php if(empty($errors['year'])&&!empty($values['year'])){print 'class="ok"';}?>>
             <option selected ><?php !empty($values['year']) ? print ($values['year']) : print '' ?></option>
                 <?php for ($i = 1922; $i <= 2022; $i++) {
                     printf('<option value="%d">%d</option>', $i, $i);
@@ -43,7 +43,7 @@ if (!empty($messages)) {
             <label><input type="radio" name="gender" value="male" <?php if (isset($values['gender'])&&$values['gender'] == 'male') print("checked"); ?>>
                 Мужской</label>
             <br>
-            <label for="limbs" <?php if (!empty($errors['limbs'])) {print 'class="error"';} ?>>Количество конечностей:</label><br>
+            <label for="limbs" <?php if (!empty($errors['limbs'])) {print 'class="error_check"';} ?>>Количество конечностей:</label><br>
             <label><input type="radio" checked="checked" name="limbs" value="1" <?php if (isset($values['limbs'])&&$values['limbs'] == '1') print("checked"); ?>>1</label>
             <label><input type="radio" name="limbs" value="2" <?php if (isset($values['limbs'])&&$values['limbs'] == '2') print("checked"); ?>>2</label>
             <label><input type="radio" name="limbs" value="3" <?php if (isset($values['limbs'])&&$values['limbs'] == '3') print("checked"); ?>>3</label>

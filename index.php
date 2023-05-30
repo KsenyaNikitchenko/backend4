@@ -74,15 +74,19 @@ else{
     setcookie('name_error','',time+24*60*60);
     $errors=TRUE;
   }
-  elseif(!preg_match("/^[а-яё]|[a-z]$/iu",$_POST['name'])){
+  else if(!preg_match("/^[а-яё]|[a-z]$/iu",$_POST['name'])){
     setcookie('name_error',$_POST['name'],time+24*60*60);
     $errors=TRUE;
   }
   else{
     setcookie('name_value',$_POST['name'],time()+30*24*60*60);
   }
-  if(empty($_POST['email'])||!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z.]{2,5}$/", $_POST['email'])){
+  if(empty($_POST['email'])){
     setcookie('email_error','',time()+24*60*60);
+    $errors=TRUE;
+  }
+  else if(!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z.]{2,5}$/", $_POST['email'])){
+    setcookie('email_error',$_POST['email'],time()+24*60*60);
     $errors=TRUE;
   }
   else{
@@ -150,6 +154,6 @@ catch(PDOException $e){
 print('Error: ' . $e->getMessage());
 exit();
 }
-// stmt - это "дескриптор состояния"
+setcookie('save','1');
 header('Location: ?save=1');
 }

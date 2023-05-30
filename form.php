@@ -133,7 +133,7 @@ else {
 
   if ($errors) {
     // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
-    header('Location: index.php');
+    header('Location: form.php');
     exit();
   }
   else {

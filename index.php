@@ -41,7 +41,7 @@ if (!empty($messages)) {
                 }?>
             </select>
             <br>
-            <label for="gender" <?php if($errors['gender']){print 'class="error_m"'} ?>>Выберите пол:</label><br>
+            <label for="gender" <?php if($errors['gender']){print 'class="error_m"';} ?>>Выберите пол:</label><br>
             <label><input type="radio" checked="checked" name="gender" value="female" <?php if (isset($values['gender'])&&$values['gender'] == 'female') print("checked"); ?>>
                 Женский</label>
             <label><input type="radio" name="gender" value="male" <?php if (isset($values['gender'])&&$values['gender'] == 'male') print("checked"); ?>>

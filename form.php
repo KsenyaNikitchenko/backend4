@@ -20,7 +20,7 @@ if (!empty($messages)) {
         <h1>Сверхспособности</h1>
         <form action="" method="POST">
             <label for="name">Введите имя:<br>
-            <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php if($values['name']) print $values['name']; ?>"><br>
+            <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value=<?php if($values['name']) print $values['name']; ?>><br>
             </label>
             <label for="email">Адрес электронной почты:<br>
             <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value='<?php print $values['email'];?>'><br>

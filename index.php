@@ -1,173 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Сверхспособности</title>
+    <link rel="stylesheet" href="style_form.css">
+</head>
+
+<body>
 <?php
-header('Content-Type: text/html; charset=UTF-8');
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  $messages = array();
-  if (!empty($_COOKIE['save'])) {
-    setcookie('save', '', 100);
-    $messages[] = 'Спасибо, результаты сохранены.';
+if (!empty($messages)) {
+  foreach ($messages as $m) {
+    print($m);
   }
-  $errors = array();
-  $errors['name'] = !empty($_COOKIE['name_error']);
-  $errors['email'] = !empty($_COOKIE['email_error']);
-  $errors['year'] = !empty($_COOKIE['year_error']);
-  $errors['gender'] = !empty($_COOKIE['gender_error']);
-  $errors['limbs'] = !empty($_COOKIE['limbs_error']);
-  $errors['super'] = !empty($_COOKIE['super_error']);
-  $errors['biography'] = !empty($_COOKIE['biography_error']);
-  if ($errors['name']) {
-    setcookie('name_error', '', 100);
-    $messages[] = '<div class="error">Заполните имя.</div>';
-  }
-  if ($errors['email']) {
-    setcookie('email_error', '', 100);
-    $messages[] = '<div class="error">Заполните email.</div>';
-  }
-  if ($errors['year']) {
-    setcookie('year_error', '', 100);
-    $messages[] = '<div class="error">Заполните год рождения.</div>';
-  }
-  if ($errors['gender']) {
-    setcookie('gender_error', '', 100);
-    $messages[] = '<div class="error">Выберите пол.</div>';
-  }
-  if ($errors['limbs']) {
-    setcookie('limbs_error', '', 100);
-    $messages[] = '<div class="error">Укажите количество конечностей.</div>';
-  }
-  if($errors['super']){
-    setcookie('super_error','',100);
-    $messages[]='<div class="error">Выберите минимум одну сверхспособность.</div>';
-  }
-  if ($errors['biography']) {
-    setcookie('biography_error', '', 100);
-    $messages[] = '<div class="error">Расскажите что-нибудь о себе.</div>';
-  }
+  print('</div>');
+}
+?>
+    <div class="form">
+        <h1>Сверхспособности</h1>
+        <form action="" method="POST">
+            <label for="name">Введите имя:<br>
+            <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value=<?php if(empty($errors['name'])&&!empty($values['name'])) print $values['name']; ?>><br>
+            </label>
+            <label for="email">Адрес электронной почты:<br>
+            <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value='<?php print $values['email'];?>'><br>
+            </label>
+            <label for="year">Год рождения</label>
+            <select name="year" <?php if ($errors['year']) {print 'class="error"';} ?>>
+            <option selected ><?php !empty($values['year']) ? print ($values['year']) : print '' ?></option>
+                <?php for ($i = 1922; $i <= 2022; $i++) {
+                    printf('<option value="%d">%d</option>', $i, $i);
+                }?>
+            </select>
+            <br>
+            <label for="gender">Выберите пол:</label><br>
+            <label><input type="radio" checked="checked" name="gender" value="female" <?php if (isset($values['gender'])&&$values['gender'] == 'female') print("checked"); ?>>
+                Женский</label>
+            <label><input type="radio" name="gender" value="male" <?php if (isset($values['gender'])&&$values['gender'] == 'male') print("checked"); ?>>
+                Мужской</label>
+            <br>
+            <label for="limbs" <?php if ($errors['limbs']) {print 'class="error_check"';} ?>>Количество конечностей:</label><br>
+            <label><input type="radio" checked="checked" name="limbs" value="1" <?php if (isset($values['limbs'])&&$values['limbs'] == '1') print("checked"); ?>>1</label>
+            <label><input type="radio" name="limbs" value="2" <?php if (isset($values['limbs'])&&$values['limbs'] == '2') print("checked"); ?>>2</label>
+            <label><input type="radio" name="limbs" value="3" <?php if (isset($values['limbs'])&&$values['limbs'] == '3') print("checked"); ?>>3</label>
+            <label><input type="radio" name="limbs" value="4" <?php if (isset($values['limbs'])&&$values['limbs'] == '4') print("checked"); ?>>4</label>
+            <br>
+            <label for="superpowers" <?php if ($errors['super']) {print 'class="error"';} ?>>Сверхспособности:</label><br>
+            <select name="super[]" multiple="multiple">
+                <option id="deathless" value="deathless" <?php if(isset($values['super']['deathless'])&&$values['super']['deathless']=='deathless') print("selected") ?>>Бессмертие</option>
+                <option id="walls" value="walls" <?php if(isset($values['super']['walls'])&&$values['super']['walls']=='walls') print("selected") ?>>Прохождение сквозь стены</option>
+                <option id="levitation" value="levitation" <?php if(isset($values['super']['levitation'])&&$values['super']['levitation']=='levitation') print("selected") ?>>Левитация</option>
+                <option id="elements" value="elements" <?php if(isset($values['super']['elements'])&&$values['super']['elements']=='elements') print("selected") ?>>Управление стихиями</option>
+                <option id="time travel" value="time travel" <?php if(isset($values['super']['time travel'])&&$values['super']['time travel']=='time travel') print("selected") ?>>Путешествие во времени</option>
+            </select>
+            <br>
+            <label for="biography">Биография:</label><br>
+            <textarea name="biography" <?php if ($errors['biography']) {print 'class="error"';} ?>><?php if($values['biography']) print $values['biography'];?></textarea><br>
+            <label><input type="checkbox" checked="checked" name="check-kontrol">с контрактом ознакомлен(а)</label>
+            <br>
+            <input type="submit" class="submit" value="Отправить" />
 
-  // Складываем предыдущие значения полей в массив, если есть.
-  $values = array();
-  $values['name'] = empty($_COOKIE['name_value']) ? '' : $_COOKIE['name_value'];
-  $values['email'] = empty($_COOKIE['email_value']) ? '' : $_COOKIE['email_value'];
-  $values['year'] = empty($_COOKIE['year_value']) ? '' : $_COOKIE['year_value'];
-  $values['gender'] = empty($_COOKIE['gender_value']) ? '' : $_COOKIE['gender_value'];
-  $values['limbs'] = empty($_COOKIE['limbs_value']) ? '' : $_COOKIE['limbs_value'];
-  $values['super'] = [];
-  $values['biography'] = empty($_COOKIE['biography_value']) ? '' : $_COOKIE['biography_value'];
-  $super=array(
-    'deathless'=>'Бессмертие',
-    'walls'=>'Прохождение сквозь стены',
-    'levitation'=>'Левитация',
-    'elements'=>'Управление стихиями',
-    'time travel'=>'Путешествие во времени',
-  );
-if(!empty($_COOKIE['super_value'])){
-  $super_value=unserialize($_COOKIE['super_value']);
-  foreach($super_value as $el){
-    if(!empty($super[$el])){
-      $values['super'][$el]=$el;
-    }
-  }
-}
-  include('form.php');
-}
-else {
-  // Проверяем ошибки.
-  $errors = FALSE;
-  if (empty($_POST['name'])) {
-    setcookie('name_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else {
-    // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);
-  }
-  if (empty($_POST['email'])) {
-    setcookie('email_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else {
-    // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
-  }
-  if (empty($_POST['year'])) {
-    setcookie('year_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else {
-    // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('year_value', $_POST['year'], time() + 30 * 24 * 60 * 60);
-  }
-  if (empty($_POST['gender'])) {
-    setcookie('gender_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else {
-    // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
-  }
-  if (empty($_POST['limbs'])) {
-    setcookie('limbs_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else {
-    // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('limbs_value', $_POST['limbs'], time() + 30 * 24 * 60 * 60);
-  }
-  if (empty($_POST['biography'])) {
-    setcookie('biography_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else {
-    // Сохраняем ранее введенное в форму значение на месяц.
-    setcookie('biography_value', $_POST['biography'], time() + 30 * 24 * 60 * 60);
-  }
-  if(empty($_POST['super'])){
-    setcookie('super_error','1',time()+24*60*60);
-    $errors=TRUE;
-  }
-  else{
-    foreach($_POST['super'] as $key=>$value){
-      $super[$key]=$value;
-    }
-    setcookie('super_value',serialize($super),time()+30*24*60*60);
-  }
+        </form>
+    </div>
 
-  if ($errors) {
-    // При наличии ошибок перезагружаем страницу и завершаем работу скрипта.
-    header('Location: index.php');
-    exit();
-  }
-  else {
-    // Удаляем Cookies с признаками ошибок.
-    setcookie('name_error', '', 100000);
-    setcookie('email_error', '', 100000);
-    setcookie('year_error', '', 100000);
-    setcookie('gender_error', '', 100000);
-    setcookie('limbs_error', '', 100000);
-    setcookie('superpower_error', '', 100000);
-    setcookie('fio_error', '', 100000);
-  }
-  // Сохранение в базу данных.
-$user = 'u52984';
-$pass = '8295850';
-$db = new PDO('mysql:host=localhost;dbname=u52984', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
-// Подготовленный запрос. Не именованные метки.
-try {
-    $stmt = $db->prepare("INSERT INTO person (name, email, year, gender, limbs, biography) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt -> execute([$_POST['name'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['limbs'], $_POST['biography']]);
-    $last_index=$db->lastInsertId();
-    $stmt = $db->prepare("SELECT id_power FROM superpower WHERE superpower = ?");
-    foreach ($_POST['superpowers'] as $value) {
-        $stmt->execute([$value]);
-        $id_power=$stmt->fetchColumn();
-        $stmt1 = $db->prepare("INSERT INTO ability (id_user, id_superpower) VALUES (?, ?)");
-        $stmt1 -> execute([$last_index, $id_power]);
-    }
-    unset($value);
-}
-catch(PDOException $e){
-print('Error: ' . $e->getMessage());
-exit();
-}
-setcookie('save','1');
-header('Location: ?save=1');
-}
+</body>
+
+</html>

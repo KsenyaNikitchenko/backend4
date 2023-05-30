@@ -70,8 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {// В суперглобальном �
 }
 else{
   $errors=FALSE;
-  if(empty($_POST['name'])||!preg_match("/^[а-яё]|[a-z]$/iu",$_POST['name'])){
+  if(empty($_POST['name'])){
     setcookie('name_error','',time+24*60*60);
+    $errors=TRUE;
+  }
+  elseif(!preg_match("/^[а-яё]|[a-z]$/iu",$_POST['name'])){
+    setcookie('name_error',$_POST['name'],time+24*60*60);
     $errors=TRUE;
   }
   else{
